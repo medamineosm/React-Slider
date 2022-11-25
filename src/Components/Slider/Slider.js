@@ -47,6 +47,21 @@ export function Slider() {
         }
         <BtnSlider moveSlide={nextSlide} direction={"next"}/>
         <BtnSlider moveSlide={prevSlide} direction={"prev"}/>
+        
+
+        <div className='container-dots'>
+            {
+                Array.from({length: 5}).map((item, index) => {
+                    return (
+                        <div 
+                        onClick={() => preventSpam(index + 1, false)}
+                        className={sliderAnim.index === index +1 ? "dot active" : "dot"}>
+                        </div>
+                    )
+                })
+            }
+            
+        </div>
     </div>
   )
 }
