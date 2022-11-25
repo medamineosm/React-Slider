@@ -9,19 +9,25 @@ export function Slider() {
     inProgress: false
   });
 
+  function preventSpam(i, p){
+    setTimeout(() => {
+        setSliderAnim({index: i ,inProgress: p})
+    }, 400);
+  }
+
   const nextSlide = () => {
-    if(sliderAnim.index !== dataSlider.length){
-        setSliderAnim({index: sliderAnim.index + 1, inProgress: true});
+    if(sliderAnim.index !== dataSlider.length && !sliderAnim.inProgress){
+        preventSpam(sliderAnim.index + 1,false);
     }else if(sliderAnim.index === dataSlider.length){
-        setSliderAnim({index: 1, inProgress: true});
+        preventSpam(1,false);
     }
   }
 
   const prevSlide = () => {
-    if(sliderAnim.index !== 1){
-        setSliderAnim({index: sliderAnim.index - 1 , inProgress: true});   
+    if(sliderAnim.index !== 1 && !sliderAnim.inProgress && !sliderAnim.inProgress){
+        preventSpam(sliderAnim.index - 1,false);
     }else if(sliderAnim.index === 1){
-        setSliderAnim({index: dataSlider.length, inProgress: true});
+        preventSpam(dataSlider.length, false);
     }
   }
 
